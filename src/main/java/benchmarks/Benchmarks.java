@@ -17,7 +17,7 @@ public class Benchmarks {
         PointArray pointArray = generateOffHeapValueArray();
 
         double sum = 0;
-        for (int i = 0 ; i < 1_000; i++) {
+        for (int i = 0 ; i < 3_000_000; i++) {
             sum = pointArray.getPointAt(i).getX() + pointArray.getPointAt(i).getY();
         }
 
@@ -29,13 +29,13 @@ public class Benchmarks {
         PointImplForComp[] pointImplForComps = generateVMPointArray();
 
         double sum = 0;
-        for (int i = 0 ; i < 1_000; i++) {
+        for (int i = 0 ; i < 3_000_000; i++) {
             sum = pointImplForComps[i].x + pointImplForComps[i].y;
         }
     }
 
     private static PointArray generateOffHeapValueArray() {
-        final int nrOfElements = 1_000;
+        final int nrOfElements = 3_000_000;
         byte[] layoutContainer = new byte[nrOfElements * Point.sizeOf()];
         PointArray offHeapPointArray = Values.newNativeReference(PointArray.class);
         ((Byteable) offHeapPointArray).bytesStore(BytesStore.wrap(layoutContainer), 0, layoutContainer.length);
@@ -59,7 +59,7 @@ public class Benchmarks {
 
 
     private static PointImplForComp[] generateVMPointArray() {
-        final int nrOfElements = 1_000;
+        final int nrOfElements = 3_000_000;
         PointImplForComp[] points = new PointImplForComp[nrOfElements];
 
         for (int i = 0; i < nrOfElements; i++) {

@@ -7,5 +7,5 @@ public interface Point {
     double getY();
     void setY(double y);
 
-    static int sizeOf() { return 64; }
+    static int sizeOf() { return 16; }
 }
